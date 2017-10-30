@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+        
+        <!-- Tiere View -->
+        <record id="animals_action" model="ir.actions.act_window">
+            <field name="name">Tiere</field>
+            <field name="res_model">animals</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Hier klicken um ein neues Tier anzulegen.</p>
+            </field>
+        </record>
+        <record id="animals_tree_view" model="ir.ui.view">
+            <field name="name">animals.tree.view</field>
+            <field name="view_type">tree</field>
+            <field name="model">animals</field>
+            <field name="arch" type="xml">
+                <tree string="Tiere">
+                    <field name="name" />
+                    <field name="classification_id" />
+                    <field name="breed_id" />
+                </tree>
+            </field>
+        </record>
+        <record id="animals_form_view" model="ir.ui.view">
+            <field name="name">animals.form.view</field>
+            <field name="view_type">form</field>
+            <field name="model">animals</field>
+            <field name="arch" type="xml">
+                <form string="Tiere">
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar oe_left" />
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="classification_id" />
+                            <field name="breed_id" domain="[('classification_id','=',classification_id)]" />
+                            <field name="tags_ids" widget="many2many_tags" />
+                            <field name="birthday" />
+                        </group>
+                        <notebook>
+                            <page string="Standort">
+                                
+                            </page>
+                            <page string="FÃ¼tterung">
+                                
+                            </page>
+                            <page string="Behandlung">
+                                
+                            </page>
+                            <page string="Ernte">
+                                
+                            </page>
+                            <page string="TÃ¤tigkeiten/Notizen">
+                                <field name="notes_ids" widget="one2many_list">
+                                    <tree string="TÃ¤tigkeiten/Notizen" editable="bottom" default_order="date desc">
+                                        <field name="date" />
+                                        <field name="note" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Tierart View -->
+        <record id="animals_classification_action" model="ir.actions.act_window">
+            <field name="name">Tierarten</field>
+            <field name="res_model">animals.classification</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Hier klicken um eine neue Tierart anzulegen.</p>
+            </field>
+        </record>
+        <record id="animals_classification_form_view" model="ir.ui.view">
+            <field name="name">animals.classification.form.view</field>
+            <field name="view_type">form</field>
+            <field name="model">animals.classification</field>
+            <field name="arch" type="xml">
+                <form string="Tierarten">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Tierrasse View -->
+        <record id="animals_breed_action" model="ir.actions.act_window">
+            <field name="name">Tierrassen</field>
+            <field name="res_model">animals.breed</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Hier klicken um eine neue Tierrasse anzulegen.</p>
+            </field>
+        </record>
+        <record id="animals_breed_form_view" model="ir.ui.view">
+            <field name="name">animals.breed.form.view</field>
+            <field name="view_type">form</field>
+            <field name="model">animals.breed</field>
+            <field name="arch" type="xml">
+                <form string="Tierrassen">
+                    <sheet>
+                        <group>
+                            <field name="classification_id" />
+                            <field name="name" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="animals_breed_tree_view" model="ir.ui.view">
+            <field name="name">animals.breed.tree.view</field>
+            <field name="view_type">tree</field>
+            <field name="model">animals.breed</field>
+            <field name="arch" type="xml">
+                <tree string="Tierrassen">
+                    <field name="classification_id" />
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+        
+        <!-- MenÃ¼ Tiere -->
+        <menuitem id="animals" name="Tiere" />
+        <menuitem id="animals_menu" name="Herdenmanagmenet" parent="animals" />
+        <menuitem id="animals_master_menu" name="Tiere" parent="animals_menu" action="animals_action" />
+        <menuitem id="animals_configuration_menu" name="Konfiguration" parent="animals" />
+        <menuitem id="animals_classification_menu" name="Tierarten" parent="animals_configuration_menu" action="animals_classification_action" />
+        <menuitem id="animals_breed_menu" name="Tierrassen" parent="animals_configuration_menu" action="animals_breed_action" />
+    </data>
+</openerp>
