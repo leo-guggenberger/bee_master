@@ -10,7 +10,7 @@
     'website': 'http://www.leo-guggenberger.at',
     'category': 'Generic Modules/Others',
     'depends': ['web'],
-    'data': ['static/src/xml/bee_master_view.xml'],
+    'data': ['static/src/xml/animals_view.xml'],
     'demo': [],
     'qweb': [],
     'installable': True,
