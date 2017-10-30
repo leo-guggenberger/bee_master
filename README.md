@@ -1,4 +1,3 @@
-# bee_master
 Beekeeping software for Odoo
 =============
         
