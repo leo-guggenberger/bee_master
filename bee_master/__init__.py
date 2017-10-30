@@ -1,2 +1,2 @@
 # __init__.py
-import bee_master
+import animals_master
